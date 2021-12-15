@@ -32,17 +32,26 @@ PATH="/usr/local/pgsql/bin:$PATH" ./pg_exec.sh
 
 ## Build using Docker
 
+The Docker image is published on: https://hub.docker.com/repository/docker/martinvw/pg_exec
+
+### Cross compiling for Apple Silicon
+
 Add platform to cross-compile on eg. Mac silicon: `--platform linux/amd64`
+
+### Build the image from source (optional)
 
 ```bash
 docker build . -t martinvw/pg_exec:latest
 ```
+
+### Use the docker image
 
 ```bash
 docker run --rm -v "$(pwd)/libraries:/opt/pg_exec/libraries" -e PG_MAJOR=11 martinvw/pg_exec
 ```
 
 Building multiple versions:
+
 ```
 while read v; do docker run --rm -v "$(pwd)/libraries:/opt/pg_exec/libraries" -e PG_MAJOR=$v martinvw/pg_exec; done < versions.txt
 ```
