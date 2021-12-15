@@ -28,3 +28,15 @@ This script requires the PostgreSQL binaries to be in the path. If you have inst
 ```
 PATH="/usr/local/pgsql/bin:$PATH" ./pg_exec.sh
 ```
+
+## Build using Docker
+
+Add platform to cross-compile on Mac silicon: `--platform linux/amd64`
+
+```bash
+docker build . -t martinvw/pg_exec:latest
+```
+
+```bash
+docker run -rm -v "$(pwd)/libraries:/opt/pg_exec/libraries" -e PG_MAJOR=11 pg_exec
+```
