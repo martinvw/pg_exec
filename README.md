@@ -1,6 +1,6 @@
 # pg_exec
 
-This repository provides a script and other resources for obtaining command execution from access to a PostgreSQL service, version 8.2 or later, including the 9.x branch. Given credentials for a PostgreSQL service, the script will use SQL queries to upload a C library which contains a wrapper method around libc's system, and can be called using [PostgreSQL's external function mechanisms](https://www.postgresql.org/docs/current/static/xfunc-c.html). The script will then execute the given command on the system.
+This repository provides a script and other resources for obtaining command execution from access to a PostgreSQL service, version 8.2 or later. Given credentials for a PostgreSQL service, the script will use SQL queries to upload a C library which contains a wrapper method around libc's system, and can be called using [PostgreSQL's external function mechanisms](https://www.postgresql.org/docs/current/static/xfunc-c.html). The script will then execute the given command on the system.
 
 **Please make sure to test the script on a local test install of PostgreSQL before attempting to use it against any live systems**
 
@@ -37,6 +37,8 @@ The Docker image is published on: https://hub.docker.com/repository/docker/marti
 ### Cross compiling for Apple Silicon
 
 Add platform to cross-compile on eg. Mac silicon: `--platform linux/amd64`
+
+Note that this is slow, so running it natively on an old machine might make more sense.
 
 ### Build the image from source (optional)
 

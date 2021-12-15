@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+
 cd /opt
 
 version="$PG_MAJOR"
@@ -52,5 +54,10 @@ echo "[+] Building PosgreSQL $version from source... (this can take a while)"
 echo "[+] Building extension..."
 cd /opt/pg_exec
 gcc -I"/opt/postgresql-$version/src/include" -shared -fPIC -o "libraries/pg_exec-$arch-$PG_MAJOR.so" pg_exec.c
+
+echo "[+] Updating checksums..."
+cd libraries
+sha256sum *.so > checksums.sha256
+md5sum *.so > checksums.md5
 
 echo "[+] Done"
